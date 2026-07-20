@@ -15,7 +15,7 @@ pygame.display.set_caption("Intro")
 
 # Change resolution to fit your monitor resolution.
 WIDTH, HEIGHT = 1400, 800
-SCREEN = pygame.display.set_mode((WIDTH,HEIGHT))
+SCREEN = pygame.display.set_mode((WIDTH,HEIGHT), pygame.RESIZABLE)
 
 # Not entirely sure this is needed
 CLOCK = pygame.time.Clock()
@@ -31,9 +31,9 @@ rect.center = (WIDTH / 2, HEIGHT / 2)
 
 IntroText = font.render(
     "You are a killer koi fish, thirsy for revenge and angered by the" \
-    "the fishy peacemakers that rule the bottom of the ocean. You are equipped with a gun" \
+    "fishy peacemakers that rule the bottom of the ocean. You are equipped with a gun" \
     "that can richochet off of walls and an immaculate sense of ballistic physics. Let them know" \
-    "your rage!", True, (80, 80, 80)
+    "your rage! Press ENTER to continue..", True, (80, 80, 80)
 )
 
 # Infinite loop for display:
