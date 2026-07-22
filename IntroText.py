@@ -43,5 +43,17 @@ while running:
     SCREEN.blit(IntroText, rect)
     running = False
 
+    # Upon pressing ENTER, the player goes to the next screen (Main game loop)
+
+    for event in pygame.event.get():
+
+        if event.type == pygame_gui.UI_TEXT_ENTRY_FINISHED and event.ui_object_id == "#main_text_entry":
+            running = False
+            
+        elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
+                    exit()
+
 pygame.display
 
