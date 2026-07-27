@@ -36,11 +36,13 @@ IntroText = font.render(
     "your rage! Press ENTER to continue..", True, (80, 80, 80)
 )
 
+text_rect = IntroText.get_rect()
+
 # Infinite loop for display:
 
 running = True
 while running:
-    SCREEN.blit(IntroText, rect)
+    SCREEN.blit(IntroText, text_rect)
     running = False
 
     # Upon pressing ENTER, the player goes to the next screen (Main game loop)
