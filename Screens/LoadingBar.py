@@ -7,7 +7,7 @@ font = pygame.font.SysFont("cobo", 100)
 clock = pygame.time.Clock()
 
 bar_width = int(IntroText.WIDTH * 0.5)
-bar_height = int(bar_width * (64 / 700))
+bar_height = int(bar_width * (110 / 1200))
 
 screen = pygame.display.set_mode((IntroText.WIDTH, IntroText.HEIGHT))
 pygame.display.set_caption("Loading screen")
@@ -18,7 +18,6 @@ WORK = 100000000
 loading_bg = pygame.transform.smoothscale(
 pygame.image.load("/Users/simonsavine/Documents/Python/Java/GitHub/Koi-ller/Assets/Images/LoadingBarBG.png"), (bar_width, bar_height))
 
- 
 loading_bg_rect = loading_bg.get_rect(center = (IntroText.WIDTH / 2, IntroText.HEIGHT/ 2))
 
 loading_bar_original = pygame.transform.smoothscale(
@@ -29,10 +28,6 @@ loading_finished = False
 loading_progress = 0
 loading_bar_width = 8
 
-finished = font.render("Done!", True, "white")
-finished_rect =  finished.get_rect(center = (IntroText.WIDTH / 2, IntroText.HEIGHT / 2))
-
-
 def doWork():
     # Do some math to build up progress on bar
     global loading_finished, loading_progress
@@ -41,7 +36,6 @@ def doWork():
         loading_progress = i
 
     loading_finished = True
-
 
 threading.Thread(target = doWork).start()
 
@@ -61,13 +55,13 @@ while running:
     screen.fill('white')
 
     if not loading_finished:
-        loading_bar_width = max(1, loading_progress / WORK * bar_width)
+        loading_bar_width = int(loading_progress / WORK * bar_width)
         loading_bar = pygame.transform.scale(loading_bar_original, (int(loading_bar_width), bar_height))
         loading_bar_rect = loading_bar.get_rect(midleft=(IntroText.WIDTH / 4, IntroText.HEIGHT / 2))
         screen.blit(loading_bg, loading_bg_rect)
         screen.blit(loading_bar, loading_bar_rect)
-    else:
-        screen.blit(finished, finished_rect)
+
+        screen.blit(loading_bar_original, loading_bar_rect, pygame.Rect(0, 0, loading_bar_width, bar_height))
 
     clock.tick(fps)
 
