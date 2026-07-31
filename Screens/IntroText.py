@@ -1,5 +1,4 @@
-import pygame
-import ptext
+import pygame, ptext
 
 pygame.init()
 
