@@ -62,6 +62,8 @@ while running:
         screen.blit(loading_bar, loading_bar_rect)
 
         screen.blit(loading_bar_original, loading_bar_rect, pygame.Rect(0, 0, loading_bar_width, bar_height))
+    else:
+        running = False
 
     clock.tick(fps)
 
