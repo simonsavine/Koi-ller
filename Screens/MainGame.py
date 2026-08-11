@@ -44,6 +44,11 @@ while running:
     screen.fill('white')
 
     for event in pygame.event.get():
+
+        if event.type == pygame.VIDEORESIZE:
+            screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+            background = pygame.transform.scale(background_img, (event.w, event.h))
+
         if event.type == pygame.QUIT:
             running = False
 
