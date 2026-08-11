@@ -8,7 +8,7 @@ WIDTH, HEIGHT = IntroText.WIDTH, IntroText.HEIGHT
 background_img = pygame.image.load("/Users/simonsavine/Documents/Python/Java/GitHub/Koi-ller/Assets/Images/Background.jpg")
 background = pygame.transform.scale(background_img, (WIDTH, HEIGHT))
 
-# Player stats
+# Player stats --------------------------------------------
 player_x, player_y, player_speed = WIDTH / 3, 0 , 3
 player_width = WIDTH / 8
 x_dir, y_dir = 0, 0
@@ -18,7 +18,27 @@ playerOG = pygame.image.load("/Users/simonsavine/Documents/Python/Java/GitHub/Ko
 # Dimensions of fish should be relevant to screen width and height
 player = pygame.transform.scale(playerOG, (WIDTH / 8, HEIGHT / 8))
 player_rect = player.get_rect()
-#player.rect.topleft = (player_x, player_y)
+
+# ----------------------------------------------------------
+
+# Enemy stats ----------------------------------------------
+
+tunaOG1 = pygame.image.load("Assets/Images/Tuna cop 1.png")
+tunaOG2 = pygame.image.load("Assets/Images/Tuna cop 2.png")
+salmonOG = pygame.image.load("Assets/Images/Salmon.png")
+
+tuna1_x, tuna2_x, tuna_speed = WIDTH / 3, 0, 3
+tuna2_x, tuna2_x = WIDTH / 3, 0
+
+tuna1 = pygame.transform.scale(tunaOG1, (WIDTH / 8, HEIGHT / 8))
+tuna2 = pygame.transform.scale(tunaOG2, (WIDTH / 8, HEIGHT / 8))
+salmon = pygame.transform.scale(salmonOG, (WIDTH / 8, HEIGHT / 8))
+
+tuna1_rect = tunaOG1.get_rect()
+tuna2_rect = tunaOG2.get_rect()
+salmon_rect = salmon.get_rect()
+
+# ------------------------------------------------------------
 
 '''
 Use mask for eventual collisions with enemies
@@ -34,11 +54,21 @@ timer = pygame.time.Clock()
 fps = 60
 
 def draw_fish():
-    screen.blit(background, (0, 0))
     screen.blit(player, player_rect)
+
+def draw_first_tuna():
+    screen.blit(tunaOG1, tuna1_rect)
+
+def draw_second_tuna():
+    screen.blit(tunaOG2, tuna2_rect)
+
+def draw_salmon():
+    screen.blit(salmon, salmon_rect)
 
 running, moving = True, True
 while running:
+
+    screen.blit(background, (0, 0))
 
     timer.tick(fps)
     screen.fill('white')
@@ -90,6 +120,8 @@ while running:
         player_rect.clamp_ip(screen.get_rect())
 
     draw_fish()
+    draw_first_tuna()
+    draw_second_tuna()
     pygame.display.flip()
 
 pygame.quit()
