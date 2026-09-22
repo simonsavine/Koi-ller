@@ -34,7 +34,14 @@ tuna1 = pygame.transform.scale(tunaOG1, (WIDTH / 8, HEIGHT / 8))
 tuna2 = pygame.transform.scale(tunaOG2, (WIDTH / 8, HEIGHT / 8))
 salmon = pygame.transform.scale(salmonOG, (WIDTH / 8, HEIGHT / 8))
 
-tuna1_rect = tunaOG1.get_rect()
+# The initial x and y positions of the enemies will vary depending on the level
+# For example, the first level will have the first tuna appear in the bottom middle, then, on level 2
+# The same tuna will appear on the bottom left instead.
+
+tuna1_x = 0
+tuna1_y = 0
+
+tuna1_rect = tuna1.get_rect()
 tuna2_rect = tunaOG2.get_rect()
 salmon_rect = salmon.get_rect()
 
@@ -53,17 +60,25 @@ pygame.display.set_caption("Koi-ller")
 timer = pygame.time.Clock()
 fps = 60
 
+# Drawing ----------------------------------------------
 def draw_fish():
     screen.blit(player, player_rect)
+    player_rect.topleft = (0, 0)
+    player_rect.topright = (WIDTH / 2, 0)
 
 def draw_first_tuna():
-    screen.blit(tunaOG1, tuna1_rect)
+    screen.blit(tuna1, tuna1_rect)
+    tuna1_rect.midbottom= (tuna1_x, tuna1_y)
 
 def draw_second_tuna():
-    screen.blit(tunaOG2, tuna2_rect)
+    screen.blit(tuna2, tuna2_rect)
+    tuna2_rect.topleft= (0 , 0)
+    tuna2_rect.topright = (100, 0)
 
 def draw_salmon():
     screen.blit(salmon, salmon_rect)
+
+#  -----------------------------------------------------
 
 running, moving = True, True
 while running:
@@ -121,7 +136,7 @@ while running:
 
     draw_fish()
     draw_first_tuna()
-    draw_second_tuna()
+    #draw_second_tuna()
     pygame.display.flip()
 
 pygame.quit()
